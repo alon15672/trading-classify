@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Trading Classify</title>
+<style>
+body { font-family: Arial; background:#0f172a; color:white; text-align:center; }
+input, button { margin:10px; padding:10px; }
+table { margin:auto; margin-top:20px; border-collapse:collapse; }
+td, th { border:1px solid #333; padding:8px; }
+</style>
+</head>
+
+<body>
+
+<h1>📊 Trading Classify</h1>
+
+<input id="trades" type="number" placeholder="Total Trades">
+<input id="wins" type="number" placeholder="Wins">
+<input id="rr" type="number" placeholder="RR (π.χ. 2)">
+<br>
+<button onclick="calculate()">Calculate</button>
+
+<h2 id="result"></h2>
+
+<script>
+function calculate(){
+let trades = parseFloat(document.getElementById("trades").value);
+let wins = parseFloat(document.getElementById("wins").value);
+let rr = parseFloat(document.getElementById("rr").value);
+
+if(!trades || !wins || !rr){
+document.getElementById("result").innerText = "Βάλε σωστά νούμερα";
+return;
+}
+
+let winrate = (wins / trades) * 100;
+let losses = trades - wins;
+let pnl = (wins * rr) - losses;
+
+document.getElementById("result").innerText =
+"Winrate: " + winrate.toFixed(2) + "% | Result: " + pnl.toFixed(2) + "R";
+}
+</script>
+
+</body>
+</html>
